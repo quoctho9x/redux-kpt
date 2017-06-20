@@ -3,7 +3,7 @@ module.exports = {
   entry: [
           'script-loader!jquery/dist/jquery.min.js',
           'script-loader!foundation-sites/dist/js/foundation.min.js',
-          './app/app.js'
+          './app2/app.js'
           ],
   output: {
     path: __dirname,

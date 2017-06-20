@@ -1,0 +1,53 @@
+<div>
+    <a href="#" id="load-du-lieu">Load dữ liệu</a>
+</div>
+<div id="noidung"></div>
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+    //get
+   /* $(document).ready(function() {
+        $('#load-du-lieu').click(function(e) {
+            e.preventDefault();
+          $('#noidung').load('index2.html');
+        });
+    });*/
+    //post
+   /* $(document).ready(function() {
+        $('#load-du-lieu').click(function(e) {
+            e.preventDefault();
+            $.get('index2.html', function(ketqua) {
+                console.log(ketqua);
+                $('#noidung').html();
+               // $('#noidung').html($('#chuoi-can-lay').html());
+            });
+
+        });
+    });*/
+
+
+    $(document).ready(function() {
+        $('#load-du-lieu').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: 'index2.php',
+                data: {
+                    id: "1",
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if(data.complate == '1')
+                    {
+                        alert('co du lieu gui sang');
+                    }else{
+                        alert('khong co du lieu gui sang');
+                    }
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+
+        });
+    });
+</script>

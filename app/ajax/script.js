@@ -1,0 +1,1 @@
+document.getElementById('second').innerHTML = 'THIS IS SPARTA!';
