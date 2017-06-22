@@ -1,7 +1,19 @@
 @import '~foundation-sites/scss/foundation';
+
 @include foundation-everything;
+/*====================
+  color default
+====================*/
+$color-blue:blue;
 $space: 1.5em;
 .page-title{
     margin-top: $space;
     margin-bottom: $space;
+}
+.active{
+    font-weight: bold;
+}
+.small-image{
+    max-width: 100px;
+    height: auto;
 }

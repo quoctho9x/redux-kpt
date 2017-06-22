@@ -6,7 +6,7 @@ class Nav extends React.Component{
         <div className="top-bar">
             <div className="top-bar-left">
                 <ul className="dropdown menu" data-dropdown-menu>
-                    <li className="menu-text">Site Title</li>
+                    <li className="menu-text">{/*<img className="icon" src="./images/icon.png" alt="img"/>*/}Logo</li>
                     <li>
                         <a href="#">One</a>
                         <ul className="menu vertical">
@@ -15,9 +15,9 @@ class Nav extends React.Component{
                             <li><a href="#">Three</a></li>
                         </ul>
                     </li>
-                    <li><IndexLink to="/" activeclassNameName="active">Homepage</IndexLink></li>
-                    <li><Link to="/account" activeclassNameName="active">Accout</Link></li>
-                    <li><Link to="/transaction" activeclassNameName="active">Transaction</Link></li>
+                    <li><IndexLink to="/" activeClassName="active">Homepage</IndexLink></li>
+                    <li><Link to="/account" activeClassName="active">Accout</Link></li>
+                    <li><Link to="/listcarts" activeClassName="active">List carts</Link></li>
 
                 </ul>
             </div>

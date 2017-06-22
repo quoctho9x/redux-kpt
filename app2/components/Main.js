@@ -6,11 +6,13 @@ import Notification from './Notification';
 class Main extends React.Component{
   render(){
       var {notification} =this.props;
+      //thong bao khi dang nhap khong dung
       var xhtml = notification !== null? <Notification txt={notification}/>: null;
+     // console.log(this.props);
     return (
       <div className="row">
         <Nav/>
-          {xhtml}
+        {xhtml}
         {this.props.children}
       </div>
     )
@@ -19,6 +21,7 @@ class Main extends React.Component{
       var {dispatch} = this.props;
       axios.get('/getInfo')
           .then(res =>{
+              //console.log(res.data)
               if(res.data !== 'CHUA_DANG_NHAP'){
                   dispatch({type:'LOG_IN',username:res.data});
               }else { console.log(res.data);}

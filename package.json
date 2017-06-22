@@ -24,8 +24,10 @@
     "css-loader": "^0.28.4",
     "foundation-sites": "^6.3.1",
     "node-sass": "^4.5.3",
+    "react-slick": "^0.14.11",
     "sass-loader": "^6.0.5",
     "script-loader": "^0.7.0",
+    "slick-carousel": "^1.6.0",
     "style-loader": "^0.18.1",
     "webpack": "^2.6.1"
   },

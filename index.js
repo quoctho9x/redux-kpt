@@ -1,7 +1,14 @@
+var fs = require('fs'),obj;
 var express = require('express');
 var app = express();
 var jsonParser = require('body-parser').json();
 var session = require('express-session');
+fs.readFile('./data.json', 'utf8', function (err, data) {
+    if (err) throw err;
+    obj = JSON.parse(data);
+    //obj = data;
+   console.log (typeof (obj));
+});
 app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(session({
@@ -11,11 +18,12 @@ app.use(session({
     cookie: {maxAge:1000*60*60}
 }));
 app.use(express.static('public'));
-app.listen(3000, () => console.log('Server started'));
-app.get('/', (req, res) => res.render('home'));
+app.listen(3000, () => console.log('server start'));
+app.get('/', (req, res) => {return (
+                                res.render('home')
+                            )});
 
-app.get('/try',(req,res)=> res.send('day la try'));
-
+app.get('/getdata',(req,res)=> res.send(obj));
 app.post('/axios', jsonParser,(req,res) =>{
     res.send(req.body);
 });
@@ -29,15 +37,14 @@ app.post('/signIn',jsonParser,(req,res)=>{
     res.send('DANG_NHAP_THAT_BAI');
 });
 
-app.get('/hello',(req,res)=>{
-    return res.send('hello');
-});
 app.get('/getInfo',(req,res)=>{
-
-    res.send('CHUA_DANG_NHAPssss');
+    if(req.session.username){
+       return res.send(req.session.username);
+    }
+    res.send('CHUA_DANG_NHAP');
 });
 
 app.get('/logout',(req,res) => {
     req.session.username = undefined;
     res.send('DA_DANG_XUAT');
-});
+})

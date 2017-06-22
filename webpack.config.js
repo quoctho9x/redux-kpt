@@ -36,6 +36,14 @@ module.exports = {
         },
         test: /\.jsx?$/,
         exclude: /node_modules/
+      },
+      {
+        test: /\.(jpg|jpeg|gif|png)$/,
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        exclude: /node_modules/
       }
     ]
   }
