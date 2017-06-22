@@ -3,10 +3,11 @@ var ReactDOM = require('react-dom');
 var {Router, Route, IndexRoute, hashHistory,browserHistory} = require('react-router');
 
 var redux = require('redux');
+var {store} = require('./redux/reducers/index');
 var {Provider} = require('react-redux');
 
 
-var username = (state = null,action) =>{
+/*var username = (state = null,action) =>{
     switch (action.type){
         case "LOG_IN":
             return action.username;
@@ -16,7 +17,7 @@ var username = (state = null,action) =>{
             return state;
     }
     return state;
-}
+}*/
 
 var notification = (state = null,action) =>{
     switch (action.type){
@@ -42,8 +43,9 @@ var listcarts = (state = [],action) =>{
     return state;
 }
 
-var reducer = redux.combineReducers({username,notification,listcarts});
-var store =redux.createStore(reducer);
+//var reducer = redux.combineReducers({username,notification,listcarts});
+//var store = redux.createStore(reducer);
+console.log(store);
 
 var HomePage = require('./components/HomePage');
 var Account = require('./components/Account');
@@ -53,6 +55,7 @@ var Main = require('./components/Main');
 var requireLogin = (nextState,replace,next)=>{
     if(store.getState().username === null){
         replace('/');
+        console.log('chua login ve homepage');
     }
     next();
 };

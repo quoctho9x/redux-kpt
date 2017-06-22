@@ -15,5 +15,5 @@ class Account extends React.Component{
 }
 
 module.exports = connect(function(state){
-  return{username:state.username};
+  return{username:state.authen};
 }) (Account);
