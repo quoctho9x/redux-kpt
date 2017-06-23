@@ -11,7 +11,6 @@ var Listcarts = require('./components/Listcarts');
 var DetailCart = require('./components/Carts/DetailCart');
 var Main = require('./components/Main');
 
-console.log(store.getState());
 
 var requireLogin = (nextState,replace,next)=>{
     if(store.getState().authen === null){
@@ -25,7 +24,6 @@ var requireLogin = (nextState,replace,next)=>{
 require('style-loader!css-loader!sass-loader!./css/styles.scss');
 require('style-loader!css-loader!sass-loader!./css/slick.scss');
 $(document).ready(()=> $(document).foundation());
-console.log('tao list car o file app.js nhe');
 ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>

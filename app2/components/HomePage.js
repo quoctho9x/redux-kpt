@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import * as Actions from '../redux/action/indexAction';
 import ReactSlick from './Slider-slick';
 class HomePage extends React.Component{
     handleRequest(){
@@ -7,6 +9,14 @@ class HomePage extends React.Component{
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
 
+    }
+    getListCarts(){
+        var{dispatch} = this.props;
+        axios.get('/getdata')
+            .then(res => {
+                if(res.data !== null) dispatch(Actions.GET_LIST_CARTS(res.data))
+            })
+            .catch(err => console.log(err));
     }
     getData(){
         axios.get('/getdata')
@@ -22,6 +32,10 @@ class HomePage extends React.Component{
       </div>
     )
   }
+  componentDidMount(){
+     // this.getListCarts();
+     // console.log('da lay duoc data')
+  }
 }
 
-module.exports = HomePage;
+module.exports = connect() (HomePage);

@@ -26,17 +26,27 @@ class DetailCart extends React.Component{
 
     return (
       <div>
-        <h1>This is Detail cart</h1>
-        <p>{this.state.carChoise.id}</p>
-        <p>{this.state.carChoise.make}</p>
-          <img className="small-image" src={this.state.carChoise.media} title="image"/>
-        <p>{this.state.carChoise.model}</p>
-        <p>{this.state.carChoise.name}</p>
-        <p>{this.state.carChoise.price}</p>
-        <p>{this.state.carChoise.year}</p>
-          <div className="">
-              <button className="button" onClick={this.handleRedirect.bind(this)}>Go to Cars</button>
+          <div className="columns detail-item">
+                  <button className="button btn-back" onClick={this.handleRedirect.bind(this)}> Go back list carts</button>
+              <div className="detail-item-content">
+                   <div className="columns large-6 ">
+                       <img className="img-large" src={this.state.carChoise.media} title="image"/>
+                   </div>
+                  <div className="columns large-6">
+                     {/* <p>{this.state.carChoise.id}</p>*/}
+                      <p className="text-large">{this.state.carChoise.model}</p>
+                      <p>Company : {this.state.carChoise.make}</p>
+                      <p>Name: {this.state.carChoise.name}</p>
+                      <p>Price: {this.state.carChoise.price}</p>
+                      <p>Year: {this.state.carChoise.year}</p>
+                      <button className="button expanded success">Add to card</button>
+                  </div>
+              </div>
           </div>
+          <div className="">
+              <p>relate for this car</p>
+          </div>
+
       </div>
     )
   }

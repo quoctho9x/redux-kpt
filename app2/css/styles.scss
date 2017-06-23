@@ -5,7 +5,18 @@
   color default
 ====================*/
 $color-blue:blue;
+/*====================
+  font size default
+====================*/
+$font-small:15px;
+$font-normal:20px;
+$font-large:25px;
+
+/*====================
+  margin default
+====================*/
 $space: 1.5em;
+
 .page-title{
     margin-top: $space;
     margin-bottom: $space;
@@ -15,5 +26,25 @@ $space: 1.5em;
 }
 .small-image{
     max-width: 100px;
+    height: auto;
+}
+.detail-item{
+    margin: 20px 0;
+}
+.detail-item-content{
+    width: 75%;
+    margin: auto;
+}
+.btn-back{
+    margin-left: 15px;
+}
+.text-large{
+    font-size: $font-large;
+}
+.text-default{
+    font-size: $font-normal;
+}
+.img-large{
+    max-width: 400px;
     height: auto;
 }
