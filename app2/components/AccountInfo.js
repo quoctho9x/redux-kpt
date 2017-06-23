@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from  'react-redux';
+import * as Actions from '../redux/action/indexAction';
 import axios from  'axios';
 class AccountInfo extends React.Component{
     logOut(e){
@@ -8,7 +9,7 @@ class AccountInfo extends React.Component{
 
         axios.get('/logout')
             .then(res =>{
-                dispatch({type:'LOG_OUT'});
+                dispatch(Actions.LOG_OUT());
             })
             .catch(err => console.log(err))
     }

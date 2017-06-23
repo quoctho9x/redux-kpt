@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from  'react-redux';
+import * as Actions from '../redux/action/indexAction';
 import axios from 'axios';
 
 class SignIn extends React.Component{
@@ -7,16 +8,13 @@ class SignIn extends React.Component{
         e.preventDefault();
         var {dispatch} = this.props;
         var {username,password} = this.refs;
-       /* if(username.value=='quoctho' && password.value =='123'){
-            dispatch({type:'LOG_IN',username:username.value})
-        }
-        console.log('submmit');*/
+
        axios.post('/signIn',{username:username.value,password:password.value})
            .then(res =>{
                if(res.data === 'DANG_NHAP_THANH_CONG'){
-                   dispatch({type:'LOG_IN',username:username.value})
+                   dispatch(Actions.LOG_IN(username.value))
                }else {
-                   dispatch({type:'SHOW_NOTIFICATION',txt:'kiem tra username va password'})
+                   dispatch(Actions.SHOW_NOTIFICATION('kiem tra username va password'))
                }
            })
            .catch(err => console.log(err))

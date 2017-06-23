@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, IndexLink} from 'react-router';
 import {connect} from 'react-redux';
+import * as Actions from '../redux/action/indexAction';
 import axios from 'axios';
 class Listcarts extends React.Component{
 
@@ -8,7 +9,7 @@ class Listcarts extends React.Component{
     var{dispatch} = this.props;
         axios.get('/getdata')
             .then(res => {
-                if(res.data !== null) dispatch({type:'GET_LIST_CARTS',lists:res.data})
+                if(res.data !== null) dispatch(Actions.GET_LIST_CARTS(res.data))
                })
             .catch(err => console.log(err));
     }

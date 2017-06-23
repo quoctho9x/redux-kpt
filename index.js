@@ -6,7 +6,6 @@ var session = require('express-session');
 fs.readFile('./data.json', 'utf8', function (err, data) {
     if (err) throw err;
     obj = JSON.parse(data);
-    //obj = data;
    console.log (typeof (obj));
 });
 app.set('view engine', 'ejs');
@@ -47,4 +46,4 @@ app.get('/getInfo',(req,res)=>{
 app.get('/logout',(req,res) => {
     req.session.username = undefined;
     res.send('DA_DANG_XUAT');
-})
+});

@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import axios from 'axios';
 import {connect} from 'react-redux';
+import * as Actions from '../redux/action/indexAction';
 import Notification from './Notification';
 class Main extends React.Component{
   render(){
@@ -19,11 +20,12 @@ class Main extends React.Component{
   }
   componentDidMount(){
       var {dispatch} = this.props;
+      //kiem tra xem da dang nhap hay chua khi f5
       axios.get('/getInfo')
           .then(res =>{
               //console.log(res.data)
               if(res.data !== 'CHUA_DANG_NHAP'){
-                  dispatch({type:'LOG_IN',username:res.data});
+                  dispatch(Actions.LOG_IN(res.data));
               }else { console.log(res.data);}
 
           })
