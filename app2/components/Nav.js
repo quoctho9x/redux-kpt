@@ -18,6 +18,7 @@ class Nav extends React.Component{
                     <li><IndexLink to="/" activeClassName="active">Homepage</IndexLink></li>
                     <li><Link to="/account" activeClassName="active">Accout</Link></li>
                     <li><Link to="/listcarts" activeClassName="active">List carts</Link></li>
+                    <li><Link to="/introduction" activeClassName="active">About Me</Link></li>
 
                 </ul>
             </div>

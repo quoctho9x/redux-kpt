@@ -10,6 +10,7 @@ var Account = require('./components/Account');
 var Listcarts = require('./components/Listcarts');
 var DetailCart = require('./components/Carts/DetailCart');
 var Main = require('./components/Main');
+var Introduction = require('./components/intro/Introduction');
 
 
 var requireLogin = (nextState,replace,next)=>{
@@ -22,7 +23,7 @@ var requireLogin = (nextState,replace,next)=>{
 
 //require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
 require('style-loader!css-loader!sass-loader!./css/styles.scss');
-require('style-loader!css-loader!sass-loader!./css/slick.scss');
+//require('style-loader!css-loader!sass-loader!./css/slick.scss');
 $(document).ready(()=> $(document).foundation());
 ReactDOM.render(
     <Provider store={store}>
@@ -32,6 +33,7 @@ ReactDOM.render(
                 <Route path="account" component={Account}/>
                 <Route path="listcarts" component={Listcarts} onEnter={requireLogin} />
                 <Route path='/listcarts/:id' component={DetailCart} onEnter={requireLogin}/>
+                <Route path='/introduction' component={Introduction}/>
             </Router>
         </Router>
     </Provider>,
