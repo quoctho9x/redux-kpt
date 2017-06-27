@@ -2,7 +2,7 @@ import React from 'react';
 import { hashHistory,browserHistory } from 'react-router';
 import {connect} from 'react-redux';
 import axios from 'axios';
-class DetailCart extends React.Component{
+class DetailItem extends React.Component{
     constructor(props){
         super(props);
         this.state={carChoise:{},text:'1234'};
@@ -56,4 +56,4 @@ class DetailCart extends React.Component{
 
 module.exports =connect(function (state) {
     return {listcarts: state.listcarts};
-}) (DetailCart);
+}) (DetailItem);

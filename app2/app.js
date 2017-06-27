@@ -8,7 +8,7 @@ var {Provider} = require('react-redux');
 var HomePage = require('./components/HomePage');
 var Account = require('./components/Account');
 var Listcarts = require('./components/Listcarts');
-var DetailCart = require('./components/Carts/DetailCart');
+var DetailItem = require('./components/Items/DetailItem');
 var Main = require('./components/Main');
 var Introduction = require('./components/intro/Introduction');
 
@@ -32,7 +32,7 @@ ReactDOM.render(
                 <IndexRoute component={HomePage}/>
                 <Route path="account" component={Account}/>
                 <Route path="listcarts" component={Listcarts} onEnter={requireLogin} />
-                <Route path='/listcarts/:id' component={DetailCart} onEnter={requireLogin}/>
+                <Route path='/listcarts/:id' component={DetailItem} onEnter={requireLogin}/>
                 <Route path='/introduction' component={Introduction}/>
             </Router>
         </Router>
