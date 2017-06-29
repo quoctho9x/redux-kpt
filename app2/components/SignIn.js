@@ -14,7 +14,7 @@ class SignIn extends React.Component{
                if(res.data === 'DANG_NHAP_THANH_CONG'){
                    dispatch(Actions.LOG_IN(username.value))
                }else {
-                   dispatch(Actions.SHOW_NOTIFICATION('kiem tra username va password'))
+                   dispatch(Actions.SHOW_NOTIFICATION('Pleass check USERNAME AND PASSWORD again!'))
                }
            })
            .catch(err => console.log(err))

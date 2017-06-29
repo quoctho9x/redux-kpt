@@ -11,11 +11,14 @@ class Main extends React.Component{
       var xhtml = notification !== null? <Notification txt={notification}/>: null;
      // console.log(this.props);
     return (
-      <div className="row">
-        <Nav/>
-        {xhtml}
-        {this.props.children}
-      </div>
+        <div>
+            <Nav/>
+            <div className="row main-section-custom">
+                {xhtml}
+                {this.props.children}
+            </div>
+        </div>
+
     )
   }
   componentDidMount(){

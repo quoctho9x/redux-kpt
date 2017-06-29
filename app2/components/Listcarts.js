@@ -5,14 +5,14 @@ import * as Actions from '../redux/action/indexAction';
 import axios from 'axios';
 class Listcarts extends React.Component{
 
-    getData(){
+  /*  getData(){
     var{dispatch} = this.props;
         axios.get('/getdata')
             .then(res => {
                 if(res.data !== null) dispatch(Actions.GET_LIST_CARTS(res.data))
                })
             .catch(err => console.log(err));
-    }
+    }*/
   render(){
     return (
       <div>
@@ -49,9 +49,6 @@ class Listcarts extends React.Component{
       </div>
     )
   }
-    componentWillMount(){
-        this.getData();
-    }
 }
 
 module.exports =connect(function (state) {

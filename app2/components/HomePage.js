@@ -11,25 +11,8 @@ class HomePage extends React.Component {
             .catch(err => console.log(err))
     }
 
-    getListCarts() {
-        var {dispatch} = this.props;
-        axios.get('/getdata')
-            .then(res => {
-                if (res.data !== null) dispatch(Actions.GET_LIST_CARTS(res.data))
-            })
-            .catch(err => console.log(err));
-    }
-
-    getData() {
-        var {dispatch} = this.props;
-        axios.get('/getdata')
-            .then(res => {
-                if (res.data !== null) dispatch(Actions.GET_LIST_CARTS(res.data))
-            })
-            .catch(err => console.log(err));
-    }
-
     render() {
+        //console.log('item filter');
         return (
             <div>
                 <div className="slider-homepage">
@@ -43,13 +26,8 @@ class HomePage extends React.Component {
                <Itemsfilter mang={this.props.listcarts} filter="Mercedes-Benz"/>
                 <h4 className="title-header">Ford</h4>
                <Itemsfilter mang={this.props.listcarts} filter="Ford"/>
-
             </div>
         )
-    }
-
-    componentWillMount() {
-        this.getData();
     }
 }
 
@@ -58,9 +36,18 @@ class Itemsfilter extends React.Component {
         super(props);
         this.state={listfilter:[]};
     }
+    componentDidMount(){
+        //case when redirect to homepage. exm: detailitem => homepage
+        try{
+            this.Fillter(this.props.mang,this.props.filter);
+        }catch(e){
+            console.log(e)
+        }
 
+    }
     componentWillReceiveProps(newProps) {
         //update new state from props
+       //console.log('item filter');
         this.Fillter(newProps.mang,newProps.filter);
     }
 
@@ -72,6 +59,7 @@ class Itemsfilter extends React.Component {
     }
 
     render(){
+        //console.log(this.props);
         return(
         <div className="row" >
             {

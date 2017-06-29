@@ -4,6 +4,8 @@ var {Router, Route, IndexRoute, hashHistory,browserHistory} = require('react-rou
 var redux = require('redux');
 var {store} = require('./redux/reducers/indexReducers');
 var {Provider} = require('react-redux');
+import axios from 'axios';
+import * as Actions from './redux/action/indexAction';
 
 var HomePage = require('./components/HomePage');
 var Account = require('./components/Account');
@@ -16,15 +18,27 @@ var Introduction = require('./components/intro/Introduction');
 var requireLogin = (nextState,replace,next)=>{
     if(store.getState().authen === null){
         replace('/');
+        console.log(store);
         console.log('chua login ve homepage');
     }
     next();
 };
+//lay du lieu tu file json
+function getData() {
+    var {dispatch} = store;
+    axios.get('/getdata')
+        .then(res => {
+            if (res.data !== null) dispatch(Actions.GET_LIST_CARTS(res.data))
+        })
+        .catch(err => console.log(err));
+}
 
 //require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
 require('style-loader!css-loader!sass-loader!./css/styles.scss');
 //require('style-loader!css-loader!sass-loader!./css/slick.scss');
+
 $(document).ready(()=> $(document).foundation());
+getData();
 ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>
@@ -32,7 +46,7 @@ ReactDOM.render(
                 <IndexRoute component={HomePage}/>
                 <Route path="account" component={Account}/>
                 <Route path="listcarts" component={Listcarts} onEnter={requireLogin} />
-                <Route path='/listcarts/:id' component={DetailItem} onEnter={requireLogin}/>
+                <Route path='/listcarts/:id' component={DetailItem}/>
                 <Route path='/introduction' component={Introduction}/>
             </Router>
         </Router>

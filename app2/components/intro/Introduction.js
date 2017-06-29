@@ -5,6 +5,7 @@ class Introduction extends React.Component{
 
     return (
       <div>
+
       <TabsInstance/>
       </div>
     )

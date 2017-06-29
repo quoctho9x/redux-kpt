@@ -5,10 +5,12 @@
   color default
 ====================*/
 $color-blue:blue;
+$color-link: #2c75ff;
 $color-red:#e32b23;
 $color-white:#fff;
-$color-wheat:wheat;
 $color-white-2:#fefefe;
+$color-wheat:wheat;
+$color-black:#000;
 $color-border:#cacaca;
 /*====================
   font size default
@@ -30,6 +32,15 @@ $space: 1.5em;
     -webkit-transition: $time;
     transition: $time;
 }
+@mixin transform-translate-xy($x : 10px, $y:10px){
+    -ms-transform: translate($x, $y); /* IE 9 */
+    -webkit-transform: translate($x, $y); /* Safari */
+    transform: translate($x, $y);
+}
+
+/*====================
+  custom default
+====================*/
 .page-title{
     margin-top: $space;
     margin-bottom: $space;
@@ -71,6 +82,46 @@ $space: 1.5em;
     margin: 10px 0px;
     margin-top: 20px ;
 }
+.main-section-custom{
+    padding-top: 80px;
+}
+
+/*====================
+  css animation react-js
+====================*/
+
+.example-enter {
+    color: red;
+    transition: 1s ease-out;
+}
+
+.example-enter.example-enter-active {
+    color: blue !important;
+}
+
+.example-leave {
+    opacity: 1;
+    transition: .5s ease-in;
+}
+
+.example-leave.example-leave-active {
+    opacity: 0.1;
+}
+
+//khi sinh ra se chay
+.example-appear {
+    opacity: 0.1;
+    @include transform-translate-xy(40px,0px);
+    transition: 0.5s ease-in;
+}
+
+.example-appear.example-appear-active {
+    opacity: 1;
+    @include transform-translate-xy(0px,0px);
+
+
+}
+
 /*====================
      homepage
 ====================*/
@@ -134,7 +185,7 @@ $space: 1.5em;
     }
 }
 .slider-homepage{
-    padding: 30px 0px;
+    padding: 0px 0px 30px 0px;
     .slick-slide{
         img{
             max-width: 60%;
@@ -144,3 +195,93 @@ $space: 1.5em;
     }
 }
 
+/*====================
+     Main-menu
+====================*/
+.main-menu{
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    padding: 5px 0px;
+    background-color: $color-red;
+    & ul{
+        background-color: $color-red;
+        color: $color-white;
+        & a{
+            color: $color-white;
+            text-transform: uppercase;
+            font-size: 16px;
+            &:hover,&:focus{
+                text-decoration: none;
+            }
+        }
+    }
+    &  ul li a::after{
+        color: $color-white;
+        border-color: $color-white transparent transparent !important;
+    }
+    .menu > li.opens-right > .is-dropdown-submenu{
+        top: 137%;
+    }
+}
+/*====================
+     Notification
+====================*/
+.Notification{
+    position: fixed;
+    right: 50px;
+
+}
+
+/*====================
+     info-user
+====================*/
+.info-user{
+    text-align: center;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    .info-user-body{
+        padding: 15px;
+    }
+    .info-user-link{
+        border-top:1px solid $color-border;
+        padding: 15px 0px;
+        button{
+            color:$color-white !important;
+            border-radius:3px;
+            margin:0px 4px;
+        }
+    }
+}
+/*====================
+     form-search
+====================*/
+.form-search{
+    position: relative;
+    min-width: 300px;
+    & > input{
+        margin-bottom: -1px;
+        max-width:100%;
+    }
+    .search-result{
+        position: absolute;
+        max-height:250px;
+        max-width:100%;
+        min-width:100%;
+        overflow: hidden;
+        overflow-y: auto;
+        display: none;
+        border: 1px solid $color-border;
+        border-radius: 2px;
+        padding: 10px 15px;
+        background-color: $color-white;
+        & .items-name{
+            margin-bottom:5px;
+        }
+        & .items-name a{
+            color: $color-link;
+            font-size:12px;
+        }
+    }
+
+}
