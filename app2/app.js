@@ -32,7 +32,6 @@ function getData() {
         })
         .catch(err => console.log(err));
 }
-
 //require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
 require('style-loader!css-loader!sass-loader!./css/styles.scss');
 //require('style-loader!css-loader!sass-loader!./css/slick.scss');

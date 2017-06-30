@@ -1,7 +1,9 @@
 import React from 'react';
+import Addtocart from '../Cart/Addtocart';
 import { hashHistory,browserHistory } from 'react-router';
 import {connect} from 'react-redux';
-import axios from 'axios';
+import * as Actions from '../../redux/action/indexAction'
+
 //day la bien duoc luu vao localstorage
 var carts = (JSON.parse(localStorage.getItem('carts'))!== null) ? JSON.parse(localStorage.getItem('carts')):[];
 
@@ -17,22 +19,30 @@ class DetailItem extends React.Component{
     handleRedirect(){
         hashHistory.push('/listcarts');
     }
+    addcarttostore(list_carts){
+        var {dispatch} = this.props;
+        dispatch(Actions.ADD_TO_CARTS(list_carts));
+    }
 
-    handleAddtocart(id,name,price,count){
-
-        //var carts = {id:id,name:name,price:price,count:count};
-        var cart = {'id':id,'name':name,'price':price,'count':count};
+    handleAddtocart(id,name,price,count,media){
+        carts = (JSON.parse(localStorage.getItem('carts'))!== null) ? JSON.parse(localStorage.getItem('carts')):[];
+        console.log(carts);
+        var cart = {'id':id,'name':name,'price':price,'count':count,'media':media};
         carts.push(cart);
         localStorage.setItem('carts',JSON.stringify(carts));
-        document.getElementById('result').innerHTML = localStorage.getItem('carts').toString();
-        console.log(JSON.parse(localStorage.getItem('carts')));
+        //update gio hang when add to cart
+        this.addcarttostore(JSON.parse(localStorage.getItem('carts')));
+        /*
+        console.log('update khi click');
+        console.log(JSON.parse(localStorage.getItem('carts')));*/
     }
     componentDidMount(){
-        document.getElementById('result').innerHTML =(localStorage.getItem('carts')!== null) ? localStorage.getItem('carts').toString() : 'khong co gia tri';
+        if(JSON.parse(localStorage.getItem('carts')) !== null){
+            this.addcarttostore(JSON.parse(localStorage.getItem('carts')));
+        }else {console.log('chua co add gio hang')}
     }
-    componentWillReceiveProps(){
+    componentWillReceiveProps(newprops){
         //update component when routerparams.id change
-        //console.log(this.props.routeParams.id);
         this.props.listcarts.filter(car => {
             if(car.id === this.props.routeParams.id ){
                 this.state.carChoise = car;
@@ -49,11 +59,11 @@ class DetailItem extends React.Component{
         });
     }
   render(){
-
+      /*console.log('update khi load xong');
+      console.log(this.props.addtocart);
+      console.log(this.props.addtocart.length);*/
     return (
       <div>
-          <p id="result"/>
-          <span className="fa fa-shopping-cart" aria-hidden="true"/><span className="badge primary">1</span>
           <div className="columns detail-item">
                   <button className="button btn-back" onClick={this.handleRedirect.bind(this)}> Go back list carts</button>
               <div className="detail-item-content">
@@ -68,7 +78,7 @@ class DetailItem extends React.Component{
                       <p>Price: {this.state.carChoise.price}</p>
                       <p>Year: {this.state.carChoise.year}</p>
                       {/*call function in es6*/}
-                      <button className="button expanded success" onClick={()=>this.handleAddtocart(this.state.carChoise.id,this.state.carChoise.name,this.state.carChoise.price,'1')}>Add to card</button>
+                      <button className="button expanded success" onClick={()=>this.handleAddtocart(this.state.carChoise.id,this.state.carChoise.name,this.state.carChoise.price,'1',this.state.carChoise.media)}>Add to card</button>
                       {/*call function in es5*/}
                       {/*<button className="button expanded success" onClick={this.handleAddtocart.bind(this,this.state.carChoise.id,this.state.carChoise.name,this.state.carChoise.price,'1')}>Add to card</button>*/}
                   </div>
@@ -86,5 +96,5 @@ class DetailItem extends React.Component{
 }
 
 module.exports =connect(function (state) {
-    return {listcarts: state.listcarts};
+    return {listcarts: state.listcarts, addtocart:state.addtocart};
 }) (DetailItem);
