@@ -1,5 +1,6 @@
 import React from 'react';
 import Addtocart from '../Cart/Addtocart';
+import TabsInstance from '../tabs/tabs';
 import { hashHistory,browserHistory } from 'react-router';
 import {connect} from 'react-redux';
 import * as Actions from '../../redux/action/indexAction'
@@ -23,13 +24,24 @@ class DetailItem extends React.Component{
         var {dispatch} = this.props;
         dispatch(Actions.ADD_TO_CARTS(list_carts));
     }
+    duplicateID(list_items,item,count){
+        for(let i=0 ; i < list_items.length;++i){
+            if(list_items[i].id === item.id){
+              var newobj = item;
+                newobj.count = list_items[i].count + count;
+                list_items.splice(i,1,newobj);//replace old object
+                return list_items;
+            }
+        }
+        return [...list_items,item];
+    }
 
     handleAddtocart(id,name,price,count,media){
         carts = (JSON.parse(localStorage.getItem('carts'))!== null) ? JSON.parse(localStorage.getItem('carts')):[];
-        console.log(carts);
         var cart = {'id':id,'name':name,'price':price,'count':count,'media':media};
-        carts.push(cart);
-        localStorage.setItem('carts',JSON.stringify(carts));
+        //check duplicate value id
+        var new_carts = this.duplicateID(carts,cart,count);
+        localStorage.setItem('carts',JSON.stringify(new_carts));
         //update gio hang when add to cart
         this.addcarttostore(JSON.parse(localStorage.getItem('carts')));
         /*
@@ -67,9 +79,9 @@ class DetailItem extends React.Component{
           <div className="columns detail-item">
                   <button className="button btn-back" onClick={this.handleRedirect.bind(this)}> Go back list carts</button>
               <div className="detail-item-content">
-                   <div className="columns large-6 ">
+                  <div className="columns large-6 ">
                        <img className="img-large" src={this.state.carChoise.media} title="image"/>
-                   </div>
+                  </div>
                   <div className="columns large-6">
                      {/* <p>{this.state.carChoise.id}</p>*/}
                       <p className="text-large">{this.state.carChoise.name}</p>
@@ -78,10 +90,14 @@ class DetailItem extends React.Component{
                       <p>Price: {this.state.carChoise.price}</p>
                       <p>Year: {this.state.carChoise.year}</p>
                       {/*call function in es6*/}
-                      <button className="button expanded success" onClick={()=>this.handleAddtocart(this.state.carChoise.id,this.state.carChoise.name,this.state.carChoise.price,'1',this.state.carChoise.media)}>Add to card</button>
+                      <button className="button expanded success" onClick={()=>this.handleAddtocart(this.state.carChoise.id,this.state.carChoise.name,this.state.carChoise.price,1,this.state.carChoise.media)}>Add to card</button>
                       {/*call function in es5*/}
                       {/*<button className="button expanded success" onClick={this.handleAddtocart.bind(this,this.state.carChoise.id,this.state.carChoise.name,this.state.carChoise.price,'1')}>Add to card</button>*/}
                   </div>
+              </div>
+              <div className="columns large-12 small-12 medium-12 tabs-info">
+
+                  <TabsInstance description={this.state.carChoise.intro}/>
               </div>
           </div>
           <div className="">
