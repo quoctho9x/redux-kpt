@@ -5,7 +5,13 @@ export default class TabsInstance extends React.Component{
     render(){
         return (
             <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
-                <Tab eventKey={1} title="Description">{this.props.description}</Tab>
+                <Tab eventKey={1} title="Description">
+                    <h3>Product Description</h3>
+                    <p>
+                        {this.props.description}
+                    </p>
+
+                    </Tab>
                 <Tab eventKey={2} title="Reviews">
                     <h4>Reviews</h4>
                     <p className="comment-form-author">
@@ -18,11 +24,11 @@ export default class TabsInstance extends React.Component{
                     </p>
                     <div>
                         <span>your review</span> <Rating/>
-                        <input name="author" type="text"  size="30" aria-required="true"/>
+                        <textarea name="author" type="text"  size="30" aria-required="true"/>
                     </div>
 
-                    <p className="form-submit">
-                        <input className="submit" type="submit" id="submit" value="Submit"/>
+                    <p className="form-submit ">
+                        <input className="submit button alert btn-custom" type="submit" id="submit" value="Submit"/>
                     </p>
                 </Tab>
             </Tabs>

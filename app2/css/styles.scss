@@ -13,6 +13,7 @@ $color-white-2:#fefefe;
 $color-wheat:wheat;
 $color-black:#000;
 $color-border:#cacaca;
+$color-background-white:#eee;
 /*====================
   font size default
 ====================*/
@@ -79,6 +80,15 @@ $space: 1.5em;
 .main-section-custom{
     padding-top: 80px;
 }
+.btn-custom{
+    padding: 10px 50px;
+    border:none;
+    color:$color-white;
+}
+textarea{
+    min-height: 60px;
+    max-height: 100px;
+}
 
 /*====================
   css animation react-js
@@ -116,6 +126,31 @@ $space: 1.5em;
 
 }
 
+.slide {
+    transition: opacity 1s;
+    &-enter {
+        opacity: 0;
+
+        &-active {
+            opacity: 1;
+        }
+    }
+    &-appear {
+        opacity: 0;
+
+        &-active {
+            opacity: 1;
+        }
+    }
+
+    &-leave {
+        opacity: 1;
+
+        &-active {
+            opacity: 0;
+        }
+    }
+}
 /*====================
      homepage
 ====================*/
@@ -302,38 +337,84 @@ $space: 1.5em;
     }
     &:hover .add-to-cart-info{
         opacity: 1;
-        max-height: 250px;
         display:block;
+        height: 420px;
         @include transition(0.3s);
     }
     .add-to-cart-info{
+        @include transition(0.3s);
+        overflow: hidden;
+        height: 0;
         opacity: 1;
-        max-height: 250px;
         display: block;
-        /*max-height: 0px;*/
+        padding:0px 20px;
+        min-width:300px;
+        background-color: $color-background-white;
         position: absolute;
         top: 35px;
-        min-width:100%;
-        background-color: $color-wheat;
-        overflow: hidden;
-        overflow-y: auto;
-        margin:0px;
-        padding: 10px;
-        @include transition(0.3s, 0.3s);
-        .add-to-cart-remove{
-            display:block;
+        ul{
+            max-height: 300px;
+            margin:0px;
+            list-style-type: none;
+            overflow: hidden;
+            overflow-y: auto;
+            background-color: $color-background-white;
+            & > li{
+                padding: 10px 0px;
+                position: relative;
+                border-bottom: 1px solid $color-white;
+            }
+            & a, .active{
+                font-weight:normal;
+                color:$color-black;
+                display: block;
+                max-width: 190px;
+            }
+            @include transition(0.3s, 0.3s);
+            .add-to-cart-remove{
+                color: $color-red;
+                font-size:22px;
+                line-height: 15px;
+                display: inline-block;
+                padding: 3px;
+                &:hover{
+                    border-radius: 50%;
+                    cursor: pointer;
+                    background-color:$color-red;
+                    color:$color-white;
+                }
+            }
+            .add-to-cart-name{
+                margin-bottom: 5px;
+            }
+            .add-to-cart-price-count{
+                color: $color-black;
+                margin:0px
+            }
+            .add-to-cart-image{
+                max-width:50px;
+                height:auto;
+                float:right;
+                position: absolute;
+                right: -5px;
+                top: 35px;
+            }
         }
-        .add-to-cart-name{
-            margin-bottom: 5px;
-        }
-        .add-to-cart-price-count{
+        .total-price{
+            padding: 20px 0px;
             color: $color-black;
+            font-size: 22px;
+            input[type='button']{
+                max-width:120px;
+                padding: 10px 25px;
+                display:inline-block;
+                margin-right:0px;
+            }
+            & > input[type='button']:last-child{
+                float: right;
+            }
         }
-        .add-to-cart-image{
-            max-width:50px;
-            height:auto;
-            float:right
-        }
+
     }
 }
 
@@ -349,10 +430,15 @@ $space: 1.5em;
     .tabs-info{
         margin-top:30px;
         ul{
+            background-color: $color-background-white;
             margin-left: 0px;
         }
         .tab-content{
             padding: 15px;
+        }
+        p{
+            font-size: 14px;
+            font-weight:normal;
         }
     }
 }
