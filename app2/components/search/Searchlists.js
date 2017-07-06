@@ -59,14 +59,10 @@ class Searchlists extends React.Component{
         <div className="search-result">
           {
             this.state.cars.map((track, key) => {
-              return <div className="" key={key}>
-                <p className="items-name" >
-                  <IndexLink to={"/listcarts/"+track.id}>
-                      {/* <img className="small-image" src={track.media} title="image"/>*/}
-                      {track.name}
-                  </IndexLink>
-                </p>
-              </div>;})
+              return <IndexLink className="items-name" key={key} to={"/listcarts/"+track.id}>
+                  {/* <img className="small-image" src={track.media} title="image"/>*/}
+                  {track.name}
+              </IndexLink>;})
           }
         </div>
 

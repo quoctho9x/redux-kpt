@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from './Nav';
+import Footer from './footer/Footer';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import * as Actions from '../redux/action/indexAction';
@@ -17,6 +18,7 @@ class Main extends React.Component{
                 {xhtml}
                 {this.props.children}
             </div>
+            <Footer/>
         </div>
 
     )

@@ -12,6 +12,7 @@ var Account = require('./components/Account');
 var Listcarts = require('./components/Listcarts');
 var DetailItem = require('./components/Items/DetailItem');
 var Main = require('./components/Main');
+var Contact = require('./components/Contact/Contact');
 var Introduction = require('./components/intro/Introduction');
 
 
@@ -46,6 +47,7 @@ ReactDOM.render(
                 <Route path="account" component={Account}/>
                 <Route path="listcarts" component={Listcarts} onEnter={requireLogin} />
                 <Route path='/listcarts/:id' component={DetailItem}/>
+                <Route path='/contact' component={Contact}/>
                 <Route path='/introduction' component={Introduction}/>
             </Router>
         </Router>

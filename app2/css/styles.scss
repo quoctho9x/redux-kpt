@@ -14,6 +14,7 @@ $color-wheat:wheat;
 $color-black:#000;
 $color-border:#cacaca;
 $color-background-white:#eee;
+$color-background-black:#222;
 /*====================
   font size default
 ====================*/
@@ -85,9 +86,39 @@ $space: 1.5em;
     border:none;
     color:$color-white;
 }
+footer{
+    margin-bottom: -10px;
+}
 textarea{
     min-height: 60px;
     max-height: 100px;
+}
+p{
+    margin-bottom: 0.5rem;
+}
+
+/*====================
+  css google map
+====================*/
+.show-map{
+    position: relative;
+    height: 50vh;
+    margin: 20px 0px 35px 0px;
+}
+.GMap {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.GMap-canvas {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top:0px;
+}
+.UpdatedText {
+    color: red;
 }
 
 /*====================
@@ -251,6 +282,19 @@ textarea{
     }
     .menu > li.opens-right > .is-dropdown-submenu{
         top: 137%;
+        & a:hover{
+            color: $color-black;
+        }
+    }
+    .menu > li[role="menuitem"] > a:hover:not(.active){
+        color: $color-black;
+    }
+    .icon{
+        background-position: center center;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        width: 80px;
+        height: auto;
     }
 }
 /*====================
@@ -287,7 +331,7 @@ textarea{
 ====================*/
 .form-search{
     position: relative;
-    min-width: 300px;
+    min-width: 230px;
     & > input{
         margin-bottom: -1px;
         max-width:100%;
@@ -302,15 +346,18 @@ textarea{
         display: none;
         border: 1px solid $color-border;
         border-radius: 2px;
-        padding: 10px 15px;
         background-color: $color-white;
         & .items-name{
-            margin-bottom:5px;
-        }
-        & .items-name a{
+            padding: 3px 0px;
+            padding-left:15px;
+            display: block;
             color: $color-link;
             font-size:12px;
+            &:hover{
+                background-color:$color-wheat;
+            }
         }
+
     }
 
 }
@@ -336,18 +383,16 @@ textarea{
         padding: 5px;
     }
     &:hover .add-to-cart-info{
+        visibility: visible;
         opacity: 1;
-        display:block;
-        height: 420px;
-        @include transition(0.3s);
+        @include transition( 0.3s);
     }
     .add-to-cart-info{
-        @include transition(0.3s);
+        @include transition(0.3s,0.3s);
         overflow: hidden;
-        height: 0;
-        opacity: 1;
-        display: block;
-        padding:0px 20px;
+        visibility: hidden;
+        opacity: 0;
+        padding:20px 20px 0px 20px;
         min-width:300px;
         background-color: $color-background-white;
         position: absolute;
@@ -366,7 +411,7 @@ textarea{
             }
             & a, .active{
                 font-weight:normal;
-                color:$color-black;
+                color:$color-link;
                 display: block;
                 max-width: 190px;
             }
@@ -404,6 +449,9 @@ textarea{
             padding: 20px 0px;
             color: $color-black;
             font-size: 22px;
+            p{
+                text-align: center;
+            }
             input[type='button']{
                 max-width:120px;
                 padding: 10px 25px;
@@ -445,6 +493,147 @@ textarea{
 
 
 /*====================
+  css footer page
+====================*/
+.full {
+    width: 100%;
+}
+.gap {
+    height: 30px;
+    width: 100%;
+    clear: both;
+    display: block;
+}
+.footer {
+    background: $color-background-black;
+    height: auto;
+    padding-bottom: 30px;
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid $color-wheat;
+    border-top: 4px solid $color-wheat;
+}
+.footer p {
+    margin: 0;
+}
+.footer img {
+    max-width: 100%;
+}
+.footer h3 {
+    border-bottom: 1px solid #BAC1C8;
+    color: #54697E;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    padding: 40px 0 10px;
+    text-transform: uppercase;
+}
+.footer ul {
+    font-size: 13px;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 15px;
+    color: #7F8C8D;
+}
+.footer ul li a {
+    padding: 0 0 5px 0;
+    display: block;
+}
+.footer a {
+    color: #78828D
+}
+.supportLi h4 {
+    font-size: 20px;
+    font-weight: lighter;
+    line-height: normal;
+    margin-bottom: 0 !important;
+    padding-bottom: 0;
+}
+.newsletter-box input#appendedInputButton {
+    background: #FFFFFF;
+    display: inline-block;
+    float: left;
+    height: 30px;
+    clear: both;
+    width: 100%;
+}
+.newsletter-box .btn {
+    border: medium none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-block;
+    height: 40px;
+    padding: 0;
+    width: 100%;
+    color: #fff;
+}
+.newsletter-box {
+    overflow: hidden;
+}
+.bg-red {
+    background-color: $color-red;
+    box-shadow: 0 1px 0 #B4B3B3;
+}
+.social li {
+    background: none repeat scroll 0 0 $color-background-black;
+    border: 2px solid $color-wheat;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    margin: 0 8px 0 0;
+    padding: 0;
+    text-align: center;
+    width: 36px;
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+.social li:hover {
+    transform: scale(1.15) rotate(360deg);
+    -webkit-transform: scale(1.1) rotate(360deg);
+    -moz-transform: scale(1.1) rotate(360deg);
+    -ms-transform: scale(1.1) rotate(360deg);
+    -o-transform: scale(1.1) rotate(360deg);
+}
+.social li a {
+    color: $color-link;
+}
+.social li:hover {
+    border: 2px solid $color-red;
+    background: $color-red;
+}
+.social li a i {
+    font-size: 16px;
+    margin: 0 0 0 5px;
+    color: #EDEFF1 !important;
+}
+.footer-bottom {
+    background: $color-background-black;
+    border-top: 1px solid $color-black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: $color-white;
+}
+.footer-bottom p.pull-left {
+    padding-top: 6px;
+}
+.payments {
+    font-size: 1.5em;
+}
+
+
+/*====================
   Star Rating Widget
 ====================*/
 .rating {
@@ -468,7 +657,7 @@ textarea{
     float: right;
     margin: 0px;
 }
-/***** CSS Magic to Highlight Stars on Hover *****/
+/***** CSS Magic to Highlight Stars on Hover *****/L
 .rating > input:checked ~ label, /* show gold star when clicked */
 .rating:not(:checked) > label:hover, /* hover current star */
 .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
@@ -477,3 +666,4 @@ textarea{
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
